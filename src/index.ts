@@ -83,6 +83,14 @@ type Extract<T, U> = T extends U ? T : never
 type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
 
 /**
+ * From T, pick a set of properties whose values are in the union K
+ */
+// PickByValue
+type PickByValue<T, K> = {
+  [P in keyof T as T[P] extends K ? never : P]: T[P]
+}
+
+/**
  * Exclude null and undefined from T
  */
 // NonNullable
